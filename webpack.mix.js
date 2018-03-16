@@ -11,5 +11,14 @@ let mix = require('laravel-mix');
  |
  */
 
+const paths = {
+    'adminlte_path': './vendor/almasaeed2010/adminlte/'
+};
+
+// Copy bootstrap and AdminLTE files to public directory
+mix.copyDirectory(paths.adminlte_path + 'bower_components/', 'public/theme/adminlte/bower_components')
+    .copyDirectory(paths.adminlte_path + 'dist/', 'public/theme/adminlte/dist')
+    .copyDirectory(paths.adminlte_path + 'plugins/', 'public/theme/adminlte/plugins');
+
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css');
