@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
-});
+Route::get('/', 'StoreController@index');
+
+Route::get('/store/report/{store}', 'StoreController@report')->name('store.report');
