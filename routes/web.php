@@ -16,3 +16,5 @@ Route::get('/', 'StoreController@index')->name('home');
 Route::resource('store', 'StoreController');
 
 Route::get('/store/report/{store}', 'StoreController@report')->name('store.report');
+
+Route::get('/line', 'LineController@index')->name('line');
