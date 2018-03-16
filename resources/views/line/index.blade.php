@@ -51,7 +51,7 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-red">
             <div class="inner">
               <h3>0</h3>
 
@@ -66,7 +66,7 @@
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-red">
+          <div class="small-box bg-yellow">
             <div class="inner">
               <h3>65</h3>
 
@@ -117,8 +117,7 @@
         <div class="col-md-4">
           <div class="box box-solid">
             <div class="box-header with-border">
-              <i class="fa fa-text-width"></i>
-
+              <i class="fa fa-bell-o"></i>
               <h3 class="box-title">更新日誌</h3>
             </div>
             <!-- /.box-header -->

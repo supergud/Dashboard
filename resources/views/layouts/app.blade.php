@@ -350,7 +350,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fa fa-sticky-note-o"></i>事件</a></li>
-                                <li><a href="#"><i class="fa fa-commenting"></i>例外訊息</a></li>
+                                <li><a href="log/message"><i class="fa fa-commenting"></i>例外訊息</a></li>
                                 <li><a href="#"><i class="fa fa-check-circle"></i>追蹤</a></li>
                                 <li><a href="#"><i class="fa fa-times-circle"></i>封鎖</a></li>
                             </ul>

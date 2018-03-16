@@ -18,3 +18,4 @@ Route::resource('store', 'StoreController');
 Route::get('/store/report/{store}', 'StoreController@report')->name('store.report');
 
 Route::get('/line', 'LineController@index')->name('line');
+Route::get('/log/message', 'LineController@message_log')->name('line.message.log');
