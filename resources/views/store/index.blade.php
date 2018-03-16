@@ -43,7 +43,9 @@
                                             {{ $store->id }}
                                         </td>
                                         <td>
-                                            {{ $store->name }}
+                                            <a href="{{ route('store.show', ['id' => $store->id]) }}">
+                                                {{ $store->name }}
+                                            </a>
                                         </td>
                                         <td>
                                             <a href="{{ route('store.report', ['id' => $store->id]) }}" class="btn btn-primary">

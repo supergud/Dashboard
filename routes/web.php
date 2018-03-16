@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', 'StoreController@index');
+Route::get('/', 'StoreController@index')->name('home');
+
+Route::resource('store', 'StoreController');
 
 Route::get('/store/report/{store}', 'StoreController@report')->name('store.report');

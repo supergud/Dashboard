@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('theme/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{ asset('theme/adminlte/bower_components/jvectormap/jquery-jvectormap.css') }}">
+    <!-- Morris charts -->
+    <link rel="stylesheet" href="{{ asset('theme/adminlte/bower_components/morris.js/morris.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('theme/adminlte/dist/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -714,6 +716,11 @@
 <script src="{{ asset('theme/adminlte/bower_components/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('theme/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- ChartJS -->
+<script src="{{ asset('theme/adminlte/bower_components/chart.js/Chart.js') }}"></script>
+<!-- Morris.js charts -->
+<script src="{{ asset('theme/adminlte/bower_components/raphael/raphael.min.js') }}"></script>
+<script src="{{ asset('theme/adminlte/bower_components/morris.js/morris.min.js') }}"></script>
 <!-- DataTables -->
 <script src="{{ asset('theme/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('theme/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
@@ -728,13 +735,12 @@
 <script src="{{ asset('theme/adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
 <!-- SlimScroll -->
 <script src="{{ asset('theme/adminlte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-<!-- ChartJS -->
-<script src="{{ asset('theme/adminlte/bower_components/Chart.js/Chart.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('theme/adminlte/dist/js/pages/dashboard2.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('theme/adminlte/dist/js/demo.js') }}"></script>
 <!-- page script -->
+
+@yield('script')
+
 <script>
     $(function () {
         $('#example2').DataTable({

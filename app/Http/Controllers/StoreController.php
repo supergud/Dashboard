@@ -32,7 +32,7 @@ class StoreController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,18 +43,27 @@ class StoreController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Store $store
      * @return \Illuminate\Http\Response
      */
     public function show(Store $store)
     {
-        //
+        $store->monthly_revenues = [
+            ['y' => '2017.09', 'item1' => 785],
+            ['y' => '2017.10', 'item1' => 330],
+            ['y' => '2017.11', 'item1' => 1400],
+            ['y' => '2017.12', 'item1' => 980],
+            ['y' => '2018.01', 'item1' => 1110],
+            ['y' => '2018.02', 'item1' => 295],
+        ];
+
+        return view('store.show', compact('store'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Store $store
      * @return \Illuminate\Http\Response
      */
     public function edit(Store $store)
@@ -65,8 +74,8 @@ class StoreController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Store  $store
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Store        $store
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Store $store)
@@ -77,7 +86,7 @@ class StoreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Store $store
      * @return \Illuminate\Http\Response
      */
     public function destroy(Store $store)
@@ -88,7 +97,7 @@ class StoreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Store  $store
+     * @param  \App\Models\Store $store
      * @return \Illuminate\Http\Response
      */
     public function report(Store $store)
