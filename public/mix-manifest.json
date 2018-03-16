@@ -1,4 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/lib/chartjs/Chart.bundle.js": "/lib/chartjs/Chart.bundle.js",
+    "/lib/chartjs/Chart.bundle.min.js": "/lib/chartjs/Chart.bundle.min.js",
+    "/lib/chartjs/Chart.js": "/lib/chartjs/Chart.js",
+    "/lib/chartjs/Chart.min.js": "/lib/chartjs/Chart.min.js",
+    "/lib/chartjs/chartjs-plugin-datalabels.js": "/lib/chartjs/chartjs-plugin-datalabels.js",
+    "/lib/chartjs/chartjs-plugin-datalabels.min.js": "/lib/chartjs/chartjs-plugin-datalabels.min.js"
 }

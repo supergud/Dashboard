@@ -99,103 +99,69 @@
 
 @section('script')
     <script>
-        var areaChartData = {
+        const areaChartData = {
             labels: ['2017.09', '2017.10', '2017.11', '2017.12', '2018.01', '2018.02'],
             datasets: [
                 {
                     label: '營業額',
-                    fillColor: 'rgba(60,141,188,0.9)',
-                    strokeColor: 'rgba(60,141,188,0.8)',
-                    pointColor: '#3b8bba',
-                    pointStrokeColor: 'rgba(60,141,188,1)',
-                    pointHighlightFill: '#fff',
-                    pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: [785, 330, 1400, 980, 1110, 295]
+                    fill: false,
+                    lineTension: 0,
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointBorderColor: 'rgba(60,141,188,1)',
+                    pointBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(60,141,188,1)',
+                    data: [785, 330, 1400, 980, 1110, 295],
+                    datalabels: {
+                        align: 'top',
+                        anchor: 'top',
+
+                    }
                 }
             ]
-        }
+        };
 
-        var areaChartOptions = {
-            //Boolean - If we should show the scale at all
-            showScale: true,
-            //Boolean - Whether grid lines are shown across the chart
-            scaleShowGridLines: true,
-            //String - Colour of the grid lines
-            scaleGridLineColor: 'rgba(0,0,0,.05)',
-            //Number - Width of the grid lines
-            scaleGridLineWidth: 1,
-            //Boolean - Whether to show horizontal lines (except X axis)
-            scaleShowHorizontalLines: true,
-            //Boolean - Whether to show vertical lines (except Y axis)
-            scaleShowVerticalLines: true,
-            //Boolean - Whether the line is curved between points
-            bezierCurve: false,
-            //Number - Tension of the bezier curve between points
-            bezierCurveTension: 0.3,
-            //Boolean - Whether to show a dot for each point
-            pointDot: true,
-            //Number - Radius of each point dot in pixels
-            pointDotRadius: 4,
-            //Number - Pixel width of point dot stroke
-            pointDotStrokeWidth: 1,
-            //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-            pointHitDetectionRadius: 20,
-            //Boolean - Whether to show a stroke for datasets
-            datasetStroke: true,
-            //Number - Pixel width of dataset stroke
-            datasetStrokeWidth: 2,
-            //Boolean - Whether to fill the dataset with a color
-            datasetFill: true,
-            //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-            maintainAspectRatio: true,
-            //Boolean - whether to make the chart responsive to window resizing
-            responsive: true,
-            title: {
-                display: true,
-                text: 'Custom Chart Title'
-            },
-            scales: {
-                xAxes: [{
-                    position: "top",
-                    scaleLabel: {
-                        display: true,
-                        labelString: "Frequency (Hz)",
-                        fontFamily: "Montserrat",
-                        fontColor: "black",
-                    },
-                    ticks: {
-                        fontFamily: "Montserrat",
-                    }
-                }],
-                yAxes: [{
-                    position: "left",
-                    scaleLabel: {
-                        display: true,
-                        labelString: "dB",
-                        fontFamily: "Montserrat",
-                        fontColor: "black",
-                    },
-                    ticks: {
-                        fontFamily: "Montserrat",
-                        reverse: true,
-                        min: -10,
-                        max: 120,
-                    },
-                }],
-            },
-        }
+        const options = {
+            type: 'line',
+            data: areaChartData,
+            options: {
+                title: {
+                    display: true,
+                    padding: 20,
+                    responsive: true,
+                    text: '月營業額'
+                },
+                legend: {
+                    display: false
+                },
+                scales: {
+                    xAxes: [{
+                        position: "bottom",
+                        scaleLabel: {
+                            display: true,
+                            labelString: "月份",
+                        },
+                        ticks: {
+                            padding: 10
+                        }
+                    }],
+                    yAxes: [{
+                        position: "left",
+                        scaleLabel: {
+                            display: true,
+                            labelString: "營業額",
+                        },
+                        ticks: {
+                            padding: 10
+                        }
+                    }],
+                },
+            }
+        };
 
-        //-------------
-        //- LINE CHART -
-        //--------------
-        var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-        var lineChart = new Chart(lineChartCanvas)
-        var lineChartOptions = areaChartOptions
-        lineChartOptions.datasetFill = false
-        lineChart.Line(areaChartData, lineChartOptions)
+        new Chart($('#lineChart'), options);
 
         // LINE CHART
-        var line = new Morris.Line({
+        const line = new Morris.Line({
             element: 'line-chart',
             resize: true,
             data: [
@@ -215,14 +181,14 @@
             parseTime: false
         });
 
-        var items = $("#line-chart").find( "svg" ).find("rect");
-        $.each(items,function(index,v){
-            var value = theJson[index].count;
-            var newY = parseFloat( $(this).attr('y') - 20 );
-            var halfWidth = parseFloat( $(this).attr('width') / 2 );
-            var newX = parseFloat( $(this).attr('x') ) +  halfWidth;
-            var output = '<text style="text-anchor: middle; font: 12px sans-serif;" x="'+newX+'" y="'+newY+'" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#000000" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6.875)"><tspan dy="3.75">'+value+'</tspan></text>';
-            $("#line-chart").find( "svg" ).append(parseSVG(output));
+        const items = $("#line-chart").find("svg").find("rect");
+        $.each(items, function (index, v) {
+            const value = theJson[index].count;
+            const newY = parseFloat($(this).attr('y') - 20);
+            const halfWidth = parseFloat($(this).attr('width') / 2);
+            const newX = parseFloat($(this).attr('x')) + halfWidth;
+            const output = '<text style="text-anchor: middle; font: 12px sans-serif;" x="' + newX + '" y="' + newY + '" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#000000" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6.875)"><tspan dy="3.75">' + value + '</tspan></text>';
+            $("#line-chart").find("svg").append(parseSVG(output));
         });
     </script>
 @stop

@@ -717,7 +717,9 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('theme/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ asset('theme/adminlte/bower_components/chart.js/Chart.js') }}"></script>
+<script src="{{ asset('lib/chartjs/Chart.min.js') }}"></script>
+<script src="{{ asset('lib/chartjs/Chart.bundle.min.js') }}"></script>
+<script src="{{ asset('lib/chartjs/chartjs-plugin-datalabels.min.js') }}"></script>
 <!-- Morris.js charts -->
 <script src="{{ asset('theme/adminlte/bower_components/raphael/raphael.min.js') }}"></script>
 <script src="{{ asset('theme/adminlte/bower_components/morris.js/morris.min.js') }}"></script>
