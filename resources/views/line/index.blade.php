@@ -23,14 +23,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{ $message_count }} </h3>
 
               <p>訊息數</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">更多資訊<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('line.message.log')}}" class="small-box-footer">更多資訊<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -38,14 +38,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px"></sup></h3>
+              <h3>{{ $follow_count }}<sup style="font-size: 20px"></sup></h3>
 
               <p>好友增加</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">更多資訊<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('line.follow.log')}}" class="small-box-footer">更多資訊<i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -53,14 +53,14 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>0</h3>
+              <h3>{{ $unfollow_count }}</h3>
 
               <p>好友封鎖</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">更多資訊 <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{route('line.unfollow.log')}}" class="small-box-footer">更多資訊 <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -68,7 +68,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{ $friend_count }}</h3>
 
               <p>有效好友數</p>
             </div>

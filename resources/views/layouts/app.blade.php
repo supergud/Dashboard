@@ -337,8 +337,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="line"><i class="fa fa-tachometer"></i>總覽</a></li>
-                        <li><a href="#"><i class="fa fa-bell-o"></i>更新日誌</a></li>
+                        <li><a href="{{route('line')}}"><i class="fa fa-tachometer"></i>總覽</a></li>
+                        <li><a href="{{route('line.note')}}"><i class="fa fa-bell-o"></i>更新日誌</a></li>
                         <li><a href="#"><i class="fa fa-users"></i>使用者</a></li>
                         <li><a href="#"><i class="fa fa-street-view"></i>商家</a></li>
                         <li><a href="#"><i class="fa fa-unlock-alt"></i>管理員</a></li>
@@ -350,9 +350,9 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fa fa-sticky-note-o"></i>事件</a></li>
-                                <li><a href="log/message"><i class="fa fa-commenting"></i>例外訊息</a></li>
-                                <li><a href="#"><i class="fa fa-check-circle"></i>追蹤</a></li>
-                                <li><a href="#"><i class="fa fa-times-circle"></i>封鎖</a></li>
+                                <li><a href="{{route('line.message.log')}}"><i class="fa fa-commenting"></i>例外訊息</a></li>
+                                <li><a href="{{route('line.follow.log')}}"><i class="fa fa-check-circle"></i>追蹤</a></li>
+                                <li><a href="{{route('line.unfollow.log')}}"><i class="fa fa-times-circle"></i>封鎖</a></li>
                             </ul>
                         </li>
 
@@ -380,7 +380,7 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 2.4.0
+            <b>Version</b> 1.0.0
         </div>
         <strong>Copyright &copy; 2018 <a href="https://5breakfast.com">5breakfast</a>.</strong> All rights
         reserved.
