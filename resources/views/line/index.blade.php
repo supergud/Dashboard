@@ -90,8 +90,8 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <ol>
-                    <li>狀態：運作中</li>
-                    <li>版本號：v 1.2.0</li>
+                    <li>狀態：{{ $bot_status->RC_status }}</li>
+                    <li>版本號：{{ $bot_status->RC_version }}</li>
                 </ol>
             </div>
             <!-- /.box-body -->
@@ -106,8 +106,8 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <ol>
-                    <li>狀態：運作中</li>
-                    <li>版本號：v 1.2.0</li>
+                    <li>狀態：{{ $bot_status->Beta_status }}</li>
+                    <li>版本號：{{ $bot_status->Beta_version }}</li>
                 </ol>
             </div>
             <!-- /.box-body -->

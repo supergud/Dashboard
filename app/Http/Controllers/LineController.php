@@ -47,7 +47,10 @@ class LineController extends Controller
         $unfollow = $unfollow_request->getBody();
         $unfollow_count = substr_count($unfollow, $today);
         $friend_count = $follow_count - $unfollow_count;
-        return view('line.index', compact('message_count', 'follow_count', 'unfollow_count', 'friend_count'));
+
+        $request = $client->request('GET', 'https://linebot.5breakfast.com/api/v1/status');
+        $bot_status = json_decode($request->getBody());
+        return view('line.index', compact('message_count', 'follow_count', 'unfollow_count', 'friend_count', 'bot_status'));
     }
 
     public function note()
