@@ -69,25 +69,7 @@
                     <!-- /.box -->
                 </div>
                 <div class="col-md-6">
-                    <!-- LINE CHART -->
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">月營業額</h3>
 
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove">
-                                    <i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="box-body chart-responsive">
-                            <div class="chart" id="line-chart" style="height: 300px;"></div>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
                 </div>
             </div>
 
@@ -100,7 +82,7 @@
 @section('script')
     <script>
         const areaChartData = {
-            labels: ['2017.09', '2017.10', '2017.11', '2017.12', '2018.01', '2018.02'],
+            labels: {!! json_encode($store->monthly_revenues->label) !!},
             datasets: [
                 {
                     label: '營業額',
@@ -110,7 +92,7 @@
                     pointBorderColor: 'rgba(60,141,188,1)',
                     pointBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgba(60,141,188,1)',
-                    data: [785, 330, 1400, 980, 1110, 295],
+                    data: {!! json_encode($store->monthly_revenues->data) !!},
                     datalabels: {
                         align: 'top',
                         anchor: 'top',
@@ -159,36 +141,5 @@
         };
 
         new Chart($('#lineChart'), options);
-
-        // LINE CHART
-        const line = new Morris.Line({
-            element: 'line-chart',
-            resize: true,
-            data: [
-                {y: '2017.09', item1: 785},
-                {y: '2017.10', item1: 330},
-                {y: '2017.11', item1: 1400},
-                {y: '2017.12', item1: 980},
-                {y: '2018.01', item1: 1110},
-                {y: '2018.02', item1: 295},
-            ],
-            xkey: 'y',
-            ykeys: ['item1'],
-            labels: ['Item 1'],
-            lineColors: ['#3c8dbc'],
-            hideHover: 'auto',
-            smooth: false,
-            parseTime: false
-        });
-
-        const items = $("#line-chart").find("svg").find("rect");
-        $.each(items, function (index, v) {
-            const value = theJson[index].count;
-            const newY = parseFloat($(this).attr('y') - 20);
-            const halfWidth = parseFloat($(this).attr('width') / 2);
-            const newX = parseFloat($(this).attr('x')) + halfWidth;
-            const output = '<text style="text-anchor: middle; font: 12px sans-serif;" x="' + newX + '" y="' + newY + '" text-anchor="middle" font="10px &quot;Arial&quot;" stroke="none" fill="#000000" font-size="12px" font-family="sans-serif" font-weight="normal" transform="matrix(1,0,0,1,0,6.875)"><tspan dy="3.75">' + value + '</tspan></text>';
-            $("#line-chart").find("svg").append(parseSVG(output));
-        });
     </script>
 @stop

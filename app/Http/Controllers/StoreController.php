@@ -48,15 +48,6 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        $store->monthly_revenues = [
-            ['y' => '2017.09', 'item1' => 785],
-            ['y' => '2017.10', 'item1' => 330],
-            ['y' => '2017.11', 'item1' => 1400],
-            ['y' => '2017.12', 'item1' => 980],
-            ['y' => '2018.01', 'item1' => 1110],
-            ['y' => '2018.02', 'item1' => 295],
-        ];
-
         return view('store.show', compact('store'));
     }
 
