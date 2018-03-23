@@ -41,9 +41,9 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="{{route('home')}}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>5b</b>Dashboard</span>
+            <span class="logo-mini"><b>5</b></span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>5breakfast </b>Dashboard</span>
         </a>
@@ -339,8 +339,8 @@
                     <ul class="treeview-menu">
                         <li><a href="{{route('line')}}"><i class="fa fa-tachometer"></i>總覽</a></li>
                         <li><a href="{{route('line.note')}}"><i class="fa fa-bell-o"></i>更新日誌</a></li>
-                        <li><a href="#"><i class="fa fa-users"></i>使用者</a></li>
-                        <li><a href="#"><i class="fa fa-street-view"></i>商家</a></li>
+                        <li><a href="{{route('line.user')}}"><i class="fa fa-users"></i>使用者</a></li>
+                        <li><a href="{{route('line.store')}}"><i class="fa fa-street-view"></i>商家</a></li>
                         <li><a href="#"><i class="fa fa-unlock-alt"></i>管理員</a></li>
                         <li class="treeview">
                             <a href="#"><i class="fa fa-line-chart"></i>紀錄
