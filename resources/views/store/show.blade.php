@@ -69,7 +69,27 @@
                     <!-- /.box -->
                 </div>
                 <div class="col-md-6">
+                    <!-- LINE CHART -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">累積營業額</h3>
 
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                    <i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <canvas id="total-turnover" style="height:250px"></canvas>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
                 </div>
             </div>
 
@@ -82,7 +102,7 @@
 @section('script')
     <script>
         const areaChartData = {
-            labels: {!! json_encode($store->monthly_revenues->label) !!},
+            labels: {!! json_encode($monthly_revenues->label) !!},
             datasets: [
                 {
                     label: '營業額',
@@ -92,11 +112,10 @@
                     pointBorderColor: 'rgba(60,141,188,1)',
                     pointBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgba(60,141,188,1)',
-                    data: {!! json_encode($store->monthly_revenues->data) !!},
+                    data: {!! json_encode($monthly_revenues->data) !!},
                     datalabels: {
                         align: 'top',
                         anchor: 'top',
-
                     }
                 }
             ]
@@ -115,12 +134,18 @@
                 legend: {
                     display: false
                 },
+                tooltips: {
+                    "enabled": false
+                },
                 scales: {
                     xAxes: [{
                         position: "bottom",
                         scaleLabel: {
                             display: true,
                             labelString: "月份",
+                        },
+                        gridLines: {
+                            display: false
                         },
                         ticks: {
                             padding: 10
@@ -132,6 +157,9 @@
                             display: true,
                             labelString: "營業額",
                         },
+                        gridLines: {
+                            display: false
+                        },
                         ticks: {
                             padding: 10
                         }
@@ -141,5 +169,70 @@
         };
 
         new Chart($('#lineChart'), options);
+
+        new Chart($('#total-turnover'), {
+            type: 'bar',
+            data: {
+                labels: {!! json_encode($total_turnovers->label) !!},
+                datasets: [{
+                    data: {!! json_encode($total_turnovers->data) !!},
+                    backgroundColor: 'rgba(60,141,188,0.8)',
+                    datalabels: {
+                        align: 'top',
+                        anchor: 'top',
+                    }
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    padding: 20,
+                    responsive: true,
+                    text: '累積營業額'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    "enabled": false
+                },
+                scales: {
+                    xAxes: [{
+                        position: "bottom",
+                        scaleLabel: {
+                            display: true,
+                            labelString: "月份",
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            padding: 10
+                        },
+                        barThickness : 50
+                    }],
+                    yAxes: [{
+                        position: "left",
+                        scaleLabel: {
+                            display: true,
+                            labelString: "營業額",
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            padding: 10
+                        }
+                    }],
+                },
+            }
+        });
     </script>
 @stop
