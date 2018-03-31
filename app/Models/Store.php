@@ -8,7 +8,11 @@ class Store extends Model
 {
     protected $table = 'stores';
 
+    protected $orders;
+
     protected $monthly_revenues;
+
+    protected $monthly_orders;
 
     public function orders()
     {
@@ -22,11 +26,14 @@ class Store extends Model
 
     public function getMonthlyRevenuesAttribute()
     {
-        $monthly_revenues = $this->orders()->selectRaw("*, DATE_FORMAT(created_at,'%Y.%m') as months")->get();
+        if (!$this->orders)
+        {
+            $this->orders = $this->orders()->selectRaw("*, DATE_FORMAT(created_at,'%Y.%m') as months")->get();
+        }
 
         $months = [];
 
-        foreach ($monthly_revenues as $monthly_revenue) {
+        foreach ($this->orders as $monthly_revenue) {
             if (!isset($months[$monthly_revenue->months])) {
                 $months[$monthly_revenue->months] = 0;
             }
@@ -53,25 +60,77 @@ class Store extends Model
     {
         if (!$this->monthly_revenues)
         {
-            $monthly_revenues = $this->getMonthlyRevenuesAttribute();
-        }
-        else {
-            $monthly_revenues = $this->monthly_revenues;
+            $this->monthly_revenues = $this->getMonthlyRevenuesAttribute();
         }
 
         $data = new \stdClass;
 
-        $data->label = $monthly_revenues->label;
+        $data->label = $this->monthly_revenues->label;
         $data->data  = [];
 
         $sum = 0;
 
-        foreach ($monthly_revenues->data as $monthly_revenue_data) {
+        foreach ($this->monthly_revenues->data as $monthly_revenue_data) {
             $sum += $monthly_revenue_data;
 
             $data->data[]  = $sum;
         }
 
+        return $data;
+    }
+
+    public function getMonthlyOrdersAttribute()
+    {
+        if (!$this->orders)
+        {
+            $this->orders = $this->orders()->selectRaw("*, DATE_FORMAT(created_at,'%Y.%m') as months")->get();
+        }
+
+        $months = [];
+
+        foreach ($this->orders as $monthly_revenue) {
+            if (!isset($months[$monthly_revenue->months])) {
+                $months[$monthly_revenue->months] = 0;
+            }
+
+            $months[$monthly_revenue->months]++;
+        }
+
+        $data = new \stdClass;
+
+        $data->label = [];
+        $data->data  = [];
+
+        foreach ($months as $label => $month) {
+            $data->label[] = $label;
+            $data->data[]  = $month;
+        }
+
+        $this->monthly_orders = $data;
+
+        return $data;
+    }
+
+    public function getTotalOrdersAttribute()
+    {
+        if (!$this->monthly_orders)
+        {
+            $this->monthly_orders = $this->getMonthlyOrdersAttribute();
+        }
+
+        $data = new \stdClass;
+
+        $data->label = $this->monthly_orders->label;
+        $data->data  = [];
+
+        $sum = 0;
+
+        foreach ($this->monthly_orders->data as $monthly_order_data) {
+            $sum += $monthly_order_data;
+
+            $data->data[]  = $sum;
+        }
+        
         return $data;
     }
 }

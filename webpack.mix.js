@@ -26,4 +26,5 @@ mix.copy(paths.chartjs + 'dist/Chart**', 'public/lib/chartjs/')
 .copy(paths.chartjs_plugin_datalabels + 'dist/chartjs**', 'public/lib/chartjs/');
 
 mix.js('resources/assets/js/app.js', 'public/js')
+.js('resources/assets/js/chart.js', 'public/js')
 .sass('resources/assets/sass/app.scss', 'public/css');

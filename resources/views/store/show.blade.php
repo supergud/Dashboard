@@ -93,6 +93,55 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- LINE CHART -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">月訂單數</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                    <i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <canvas id="monthy-orders" style="height:250px"></canvas>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <div class="col-md-6">
+                    <!-- LINE CHART -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">累積訂單數</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                    <i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <canvas id="total-orders" style="height:250px"></canvas>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
         </section>
         <!-- /.content -->
     </div>
@@ -100,139 +149,14 @@
 @stop
 
 @section('script')
+    <script src="{{ asset('js/chart.js') }}"></script>
     <script>
-        const areaChartData = {
-            labels: {!! json_encode($monthly_revenues->label) !!},
-            datasets: [
-                {
-                    label: '營業額',
-                    fill: false,
-                    lineTension: 0,
-                    borderColor: 'rgba(60,141,188,0.8)',
-                    pointBorderColor: 'rgba(60,141,188,1)',
-                    pointBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgba(60,141,188,1)',
-                    data: {!! json_encode($monthly_revenues->data) !!},
-                    datalabels: {
-                        align: 'top',
-                        anchor: 'top',
-                    }
-                }
-            ]
-        };
+        $(document).ready(function () {
+            NewChart.line($('#lineChart'), {!! json_encode($monthly_revenues->label) !!}, {!! json_encode($monthly_revenues->data) !!}, '月營業額', '月份', '營業額');
+            NewChart.line($('#monthy-orders'), {!! json_encode($monthly_orders->label) !!}, {!! json_encode($monthly_orders->data) !!}, '月訂單數', '月份', '訂單數');
 
-        const options = {
-            type: 'line',
-            data: areaChartData,
-            options: {
-                title: {
-                    display: true,
-                    padding: 20,
-                    responsive: true,
-                    text: '月營業額'
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    "enabled": false
-                },
-                scales: {
-                    xAxes: [{
-                        position: "bottom",
-                        scaleLabel: {
-                            display: true,
-                            labelString: "月份",
-                        },
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: {
-                            padding: 10
-                        }
-                    }],
-                    yAxes: [{
-                        position: "left",
-                        scaleLabel: {
-                            display: true,
-                            labelString: "營業額",
-                        },
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: {
-                            padding: 10
-                        }
-                    }],
-                },
-            }
-        };
-
-        new Chart($('#lineChart'), options);
-
-        new Chart($('#total-turnover'), {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode($total_turnovers->label) !!},
-                datasets: [{
-                    data: {!! json_encode($total_turnovers->data) !!},
-                    backgroundColor: 'rgba(60,141,188,0.8)',
-                    datalabels: {
-                        align: 'top',
-                        anchor: 'top',
-                    }
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    padding: 20,
-                    responsive: true,
-                    text: '累積營業額'
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    "enabled": false
-                },
-                scales: {
-                    xAxes: [{
-                        position: "bottom",
-                        scaleLabel: {
-                            display: true,
-                            labelString: "月份",
-                        },
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: {
-                            padding: 10
-                        },
-                        barThickness : 50
-                    }],
-                    yAxes: [{
-                        position: "left",
-                        scaleLabel: {
-                            display: true,
-                            labelString: "營業額",
-                        },
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: {
-                            padding: 10
-                        }
-                    }],
-                },
-            }
+            NewChart.bar($('#total-turnover'), {!! json_encode($total_turnovers->label) !!}, {!! json_encode($total_turnovers->data) !!}, '累積營業額', '月份', '營業額');
+            NewChart.bar($('#total-orders'), {!! json_encode($total_orders->label) !!}, {!! json_encode($total_orders->data) !!}, '累積訂單數', '月份', '訂單數');
         });
     </script>
 @stop

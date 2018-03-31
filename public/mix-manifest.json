@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/chart.js": "/js/chart.js",
     "/lib/chartjs/Chart.bundle.js": "/lib/chartjs/Chart.bundle.js",
     "/lib/chartjs/Chart.bundle.min.js": "/lib/chartjs/Chart.bundle.min.js",
     "/lib/chartjs/Chart.js": "/lib/chartjs/Chart.js",

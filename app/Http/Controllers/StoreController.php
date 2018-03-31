@@ -49,9 +49,17 @@ class StoreController extends Controller
     public function show(Store $store)
     {
         $monthly_revenues = $store->monthly_revenues;
-        $total_turnovers = $store->total_turnovers;
+        $total_turnovers  = $store->total_turnovers;
+        $monthly_orders   = $store->monthly_orders;
+        $total_orders     = $store->total_orders;
 
-        return view('store.show', compact(['store', 'monthly_revenues', 'total_turnovers']));
+        return view('store.show', compact([
+            'store',
+            'monthly_revenues',
+            'total_turnovers',
+            'monthly_orders',
+            'total_orders',
+        ]));
     }
 
     /**
